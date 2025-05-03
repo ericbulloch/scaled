@@ -26,3 +26,7 @@ Some solutions are quick fixes, some require more work and rework. Sometimes a t
 ### Backend Language
 
 I will be starting out with technology that is purposely labeled as slow. I will be using Python as a backend because people give it a reputation for being slow with reporting technology. I argue that our database calls and the way we organize our data will be more important than the backend technology. Each backend call will include timing for how long a request took and how long the database calls took. Both will be important to determine if Python is truly the bottleneck or if it is something else.
+
+### Database Layer
+
+For reporting software, I have been told many times that a SQL solution does not scale well. I think this needs to be put to the test. I will start with PostGRES to get a baseline of where we are at. From there I will also include a MongoDB backend. I want to compare both to see if the technology is truly the issue or if it is something else.
