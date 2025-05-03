@@ -16,3 +16,7 @@ Scaling for customers that ran a few hundred orders in a minute is a very differ
 - A reporting system that has metrics of all of these items or just a specialized vertical slice.
 
 While I have worked on the above problems and many others with logistics software, I will be focusing on the last item because it easily demonstrates scaling issues. This repository will generate order data for multiple clients and then show in stages with examples how things can be scaled. The plan is to use both PostGRES and MongoDB to show that both can be scaled for reporting using different techniques. Often times developers focus on technology to scale, I argue that scaling can be accomplished with what you currently have.
+
+Some solutions are quick fixes, some require more work and rework. Sometimes a temporary solution is all that we can do while things must be reworked or redone.
+
+**The process is just as important as the solution.**
