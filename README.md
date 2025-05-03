@@ -20,3 +20,9 @@ While I have worked on the above problems and many others with logistics softwar
 Some solutions are quick fixes, some require more work and rework. Sometimes a temporary solution is all that we can do while things must be reworked or redone.
 
 **The process is just as important as the solution.**
+
+## Technology
+
+### Backend Language
+
+I will be starting out with technology that is purposely labeled as slow. I will be using Python as a backend because people give it a reputation for being slow with reporting technology. I argue that our database calls and the way we organize our data will be more important than the backend technology. Each backend call will include timing for how long a request took and how long the database calls took. Both will be important to determine if Python is truly the bottleneck or if it is something else.
