@@ -36,3 +36,15 @@ For reporting software, I have been told many times that a SQL solution does not
 I plan on using React to display the data in charts and graphs. I am not sure what library I will be using.
 
 Each stage will have a docker compose file so that others can validate or dispute my results.
+
+## Layout
+
+I think there will be an overall readme file that is used to explain each step and what I am thinking at that stage or scaling the reporting system. Each stage will have its own code to show how changes affected the speed and memory usage of the reporting system. I will also be including the steps to reproduce the data that I am using at each step, that way even though numbers may be different between machines the magnitude of a change will be consistent.
+
+Each stage will be in a stages folder. All files for that stage will be included within that folder.
+
+## Conclusion
+
+I hope to learn more about scaling and what it takes to move the needle for clients that have large needs. I want to publish this repository so that others can see what has been done and then decide for themselves if a "slow technology" is the issue that is preventing the scaling or if it is something else.
+
+I am trying to start a conversation on what the something else is.
