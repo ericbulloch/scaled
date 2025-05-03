@@ -30,3 +30,9 @@ I will be starting out with technology that is purposely labeled as slow. I will
 ### Database Layer
 
 For reporting software, I have been told many times that a SQL solution does not scale well. I think this needs to be put to the test. I will start with PostGRES to get a baseline of where we are at. From there I will also include a MongoDB backend. I want to compare both to see if the technology is truly the issue or if it is something else.
+
+### Other Technology
+
+I plan on using React to display the data in charts and graphs. I am not sure what library I will be using.
+
+Each stage will have a docker compose file so that others can validate or dispute my results.
