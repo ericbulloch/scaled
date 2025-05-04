@@ -43,6 +43,10 @@ I think there will be an overall readme file that is used to explain each step a
 
 Each stage will be in a stages folder. All files for that stage will be included within that folder.
 
+## Original Data
+
+The `postal.csv` file is from an excel file called `ZIP_Locale_Detail.xls` that I downloaded from the census department. I removed all postal codes exception those for the 50 states.
+
 ## Conclusion
 
 I hope to learn more about scaling and what it takes to move the needle for clients that have large needs. I want to publish this repository so that others can see what has been done and then decide for themselves if a "slow technology" is the issue that is preventing the scaling or if it is something else.
