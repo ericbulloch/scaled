@@ -1,6 +1,7 @@
 import csv
 import json
 import os
+import random
 import uuid
 
 
@@ -31,3 +32,23 @@ def get_tenants():
         with open(file_name, 'w') as fp:
             json.dump(tenants, fp, indent=4)
         return tenants
+
+
+def get_items():
+    file_name = 'items.json'
+    if os.path.exists(file_name):
+        with open(file_name, 'r') as fp:
+            return json.load(fp)
+    else:
+        items = []
+        for i in range(1, 21):
+            item = {
+                "id": str(uuid.uuid4()),
+                "name": f"Item {i}",
+                "price": round(random.uniform(10.0, 20.0), 2),
+                "cost": round(random.uniform(3.0, 9.0), 2),
+            }
+            items.append(item)
+        with open(file_name, 'w') as fp:
+            json.dump(items, fp, indent=4)
+        return items
