@@ -1,4 +1,7 @@
 import csv
+import json
+import os
+import uuid
 
 
 def read_postal_csv(file_path):
@@ -16,3 +19,15 @@ def read_postal_csv(file_path):
             obj = {'postal': postal, 'state': state}
             data.append(obj)
     return data
+
+
+def get_tenants():
+    file_name = 'tenants.json'
+    if os.path.exists(file_name):
+        with open(file_name, 'r') as fp:
+            return json.load(fp)
+    else:
+        tenants =  [{"id": str(uuid.uuid4()), "name": f"Tenant {i}"} for i in range(1, 31)]
+        with open(file_name, 'w') as fp:
+            json.dump(tenants, fp, indent=4)
+        return tenants
