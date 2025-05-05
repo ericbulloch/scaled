@@ -64,6 +64,12 @@ def generate_orders(date, amount):
 
 
 if __name__ == '__main__':
+    try:
+        with open('config.json', 'r') as fp:
+            config = json.load(fp)
+    except FileNotFoundError:
+        print('The config.json was not found. Please provide one to run this command.')
+        exit(1)
     dates = generate_dates(days_ago=60)
     for d in dates:
         current = datetime.strptime(d, '%Y-%m-%d')
