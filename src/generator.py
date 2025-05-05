@@ -71,12 +71,14 @@ if __name__ == '__main__':
         print('The config.json was not found. Please provide one to run this command.')
         exit(1)
     days_ago = config.get('days_ago', 30)
-    weekday_orders = config.get('weekday_orders', 144_000)
-    weekend_orders = config.get('weekend_orders', 48_000)
+    customer_types = config.get('customer_types', [])
+    if not customer_types:
+        print('The config.json is missing customer_types. Please provide customer types.')
+        exit(1)
     dates = generate_dates(days_ago=days_ago)
     for d in dates:
         current = datetime.strptime(d, '%Y-%m-%d')
-        number_of_orders = weekend_orders if current.weekday() > 4 else weekday_orders
+        number_of_orders = 10 if current.weekday() > 4 else 30
         orders = generate_orders(d, number_of_orders)
         print(json.dumps(orders, indent=4))
         print(f"{number_of_orders} orders generated for {d}")
