@@ -1,5 +1,35 @@
 {
-    "days_ago": 30,
-    "weekday_orders": 144000,
-    "weekend_orders": 48000,
+    "days_ago": 1,
+    "customer_types": [
+        {
+            "number_of_customers": 1,
+            "quantity_range": [1, 30],
+            "number_of_items_range": [1, 30], 
+            "weekday_orders_range": [140000, 150000],
+            "weekend_orders_range": [47000, 49000]
+        },
+        {
+            "number_of_customers": 4,
+            "quantity_range": [1, 30],
+            "number_of_items_range": [1, 30], 
+            "weekday_orders_range": [31000, 37500],
+            "weekend_orders_range": [11750, 12250]
+        },
+        {
+            "number_of_customers": 5,
+            "quantity_range": [1, 10],
+            "number_of_items_range": [1, 10], 
+            "weekday_orders_range": [15500, 18750],
+            "weekend_orders_range": [5875, 6125]
+        },
+        {
+            "number_of_customers": 20,
+            "quantity_range": [1, 2],
+            "number_of_items_range": [1, 5], 
+            "weekday_orders_range": [1550, 1875],
+            "weekend_orders_range": [588, 613]
+        }
+    ],
+    "weekday_orders": 30,
+    "weekend_orders": 10
 }
