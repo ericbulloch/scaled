@@ -19,7 +19,8 @@ def generate_dates(days_ago):
         dates.append(date.strftime('%Y-%m-%d'))
     return dates[::-1]
 
-def generate_orders(date, amount):
+def generate_orders(date, customer_types):
+    current = datetime.strptime(date, '%Y-%m-%d')
     parent_dir = 'orders'
     file_name = f'{os.path.join(parent_dir, date)}.json'
     if os.path.exists(file_name):
@@ -31,33 +32,34 @@ def generate_orders(date, amount):
     orders = []
     if not os.path.exists(parent_dir):
         os.makedirs(parent_dir)
-    tenant_weights = [0.49] + [0.075] * 4 + [0.04] * 5 + [0.0005] * 20
-    for i in range(amount):
-        tenant = random.choices(tenants, weights=tenant_weights)[0]
-        print(tenant)
-        postal_data = random.choice(postal)
-        timestamp = f'{date}T{generate_date()}Z'
-        number_of_items = random.randint(1, 15)
-        order_items = []
-        for j in range(number_of_items):
-            item = random.choice(items)
-            quantity = random.randint(1, 30)
-            order_items.append({
-                "id": item['id'],
-                "name": item['name'],
-                "quantity": quantity,
-                "price": item['price'],
-                "cost": item['cost'],
-            })
-        order = {
-            "postal": postal_data['postal'],
-            "state": postal_data['state'],
-            "timestamp": timestamp,
-            "tenant_uuid": tenant["id"],
-            "tenant_name": tenant['name'],
-            "items": order_items,
-        }
-        orders.append(order)
+    for tenant_id, customer_type in enumerate(customer_types):
+        print('tenant_id', tenant_id)
+        ranges = customer_type['weekend_orders_range'] if current.weekday() > 4 else customer_type['weekday_orders_range']
+        for i in range(random.randint(*ranges)):
+            tenant = tenants[tenant_id]
+            postal_data = random.choice(postal)
+            timestamp = f'{date}T{generate_date()}Z'
+            number_of_items = random.randint(*customer_type['number_of_items_range'])
+            order_items = []
+            for j in range(number_of_items):
+                item = random.choice(items)
+                quantity = random.randint(*customer_type['quantity_range'])
+                order_items.append({
+                    "id": item['id'],
+                    "name": item['name'],
+                    "quantity": quantity,
+                    "price": item['price'],
+                    "cost": item['cost'],
+                })
+            order = {
+                "postal": postal_data['postal'],
+                "state": postal_data['state'],
+                "timestamp": timestamp,
+                "tenant_uuid": tenant["id"],
+                "tenant_name": tenant['name'],
+                "items": order_items,
+            }
+            orders.append(order)
     with open(file_name, 'w') as fp:
         json.dump(orders, fp, indent=4)
     return orders
@@ -77,8 +79,6 @@ if __name__ == '__main__':
         exit(1)
     dates = generate_dates(days_ago=days_ago)
     for d in dates:
-        current = datetime.strptime(d, '%Y-%m-%d')
-        number_of_orders = 10 if current.weekday() > 4 else 30
-        orders = generate_orders(d, number_of_orders)
-        print(json.dumps(orders, indent=4))
-        print(f"{number_of_orders} orders generated for {d}")
+        orders = generate_orders(d, customer_types)
+        # print(json.dumps(orders, indent=4))
+        print(f"Orders generated for {d}")
