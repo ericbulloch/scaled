@@ -29,7 +29,5 @@
             "weekday_orders_range": [1550, 1875],
             "weekend_orders_range": [588, 613]
         }
-    ],
-    "weekday_orders": 30,
-    "weekend_orders": 10
+    ]
 }
