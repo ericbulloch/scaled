@@ -62,7 +62,6 @@ def generate_orders(date, customer_types):
             orders.append(order)
     with open(file_name, 'w') as fp:
         json.dump(orders, fp, indent=4)
-    return orders
 
 
 if __name__ == '__main__':
@@ -79,6 +78,5 @@ if __name__ == '__main__':
         exit(1)
     dates = generate_dates(days_ago=days_ago)
     for d in dates:
-        orders = generate_orders(d, customer_types)
-        # print(json.dumps(orders, indent=4))
+        generate_orders(d, customer_types)
         print(f"Orders generated for {d}")
