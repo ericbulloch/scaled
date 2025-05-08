@@ -22,46 +22,52 @@ def generate_dates(days_ago):
 def generate_orders(date, customer_types):
     current = datetime.strptime(date, '%Y-%m-%d')
     parent_dir = 'orders'
-    file_name = f'{os.path.join(parent_dir, date)}.json'
-    if os.path.exists(file_name):
-        with open(file_name, 'r') as fp:
-            return json.load(fp)
+    # file_name = f'{os.path.join(parent_dir, date, 'data')}.json'
+    # if os.path.exists(file_name):
+    #     with open(file_name, 'r') as fp:
+    #         return json.load(fp)
     tenants = get_tenants()
     items = get_items()
     postal = read_postal_csv('postal.csv')
-    orders = []
-    if not os.path.exists(parent_dir):
-        os.makedirs(parent_dir)
-    for tenant_id, customer_type in enumerate(customer_types):
-        print('tenant_id', tenant_id)
-        ranges = customer_type['weekend_orders_range'] if current.weekday() > 4 else customer_type['weekday_orders_range']
-        for i in range(random.randint(*ranges)):
+    if not os.path.exists(os.path.join(parent_dir, date)):
+        os.makedirs(os.path.join(parent_dir, date))
+    tenant_id = -1
+    for customer_type in customer_types:
+        for _ in range(customer_type['number_of_customers']):
+            tenant_id += 1
+            print('tenant_id', tenant_id)
             tenant = tenants[tenant_id]
-            postal_data = random.choice(postal)
-            timestamp = f'{date}T{generate_date()}Z'
-            number_of_items = random.randint(*customer_type['number_of_items_range'])
-            order_items = []
-            for j in range(number_of_items):
-                item = random.choice(items)
-                quantity = random.randint(*customer_type['quantity_range'])
-                order_items.append({
-                    "id": item['id'],
-                    "name": item['name'],
-                    "quantity": quantity,
-                    "price": item['price'],
-                    "cost": item['cost'],
-                })
-            order = {
-                "postal": postal_data['postal'],
-                "state": postal_data['state'],
-                "timestamp": timestamp,
-                "tenant_uuid": tenant["id"],
-                "tenant_name": tenant['name'],
-                "items": order_items,
-            }
-            orders.append(order)
-    with open(file_name, 'w') as fp:
-        json.dump(orders, fp, indent=4)
+            file_name = f'{os.path.join(parent_dir, date, tenant["id"])}.json'
+            if os.path.exists(file_name):
+                continue
+            orders = []
+            ranges = customer_type['weekend_orders_range'] if current.weekday() > 4 else customer_type['weekday_orders_range']
+            for i in range(random.randint(*ranges)):
+                postal_data = random.choice(postal)
+                timestamp = f'{date}T{generate_date()}Z'
+                number_of_items = random.randint(*customer_type['number_of_items_range'])
+                order_items = []
+                for j in range(number_of_items):
+                    item = random.choice(items)
+                    quantity = random.randint(*customer_type['quantity_range'])
+                    order_items.append({
+                        "id": item['id'],
+                        "name": item['name'],
+                        "quantity": quantity,
+                        "price": item['price'],
+                        "cost": item['cost'],
+                    })
+                order = {
+                    "postal": postal_data['postal'],
+                    "state": postal_data['state'],
+                    "timestamp": timestamp,
+                    "tenant_uuid": tenant["id"],
+                    "tenant_name": tenant['name'],
+                    "items": order_items,
+                }
+                orders.append(order)
+            with open(file_name, 'w') as fp:
+                json.dump(orders, fp, indent=4)
 
 
 if __name__ == '__main__':
