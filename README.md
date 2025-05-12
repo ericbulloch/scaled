@@ -47,6 +47,12 @@ Each stage will be in a stages folder. All files for that stage will be included
 
 The `postal.csv` file is from an excel file called `ZIP_Locale_Detail.xls` that I downloaded from the census department. I removed all postal codes exception those for the 50 states.
 
+All orders, items and tenant uuids are generated. I am expecting that I may have to revisit when order times are generated and move to something more like a shuffle bag. For now I am sticking with Python's built in random library.
+
+Orders are generated and placed in an orders folder. Each folder under orders has a date for a name. Each file in those folders has a tenant's uuid as the file name. It is all the orders that day for that tenant.
+
+I then import those orders to a database. I am currently building the first phase in SQLite and will switch over to the above mentioned databases when I am ready.
+
 ## Conclusion
 
 I hope to learn more about scaling and what it takes to move the needle for clients that have large needs. I want to publish this repository so that others can see what has been done and then decide for themselves if a "slow technology" is the issue that is preventing the scaling or if it is something else.
