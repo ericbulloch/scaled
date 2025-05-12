@@ -22,10 +22,6 @@ def generate_dates(days_ago):
 def generate_orders(date, customer_types):
     current = datetime.strptime(date, '%Y-%m-%d')
     parent_dir = 'orders'
-    # file_name = f'{os.path.join(parent_dir, date, 'data')}.json'
-    # if os.path.exists(file_name):
-    #     with open(file_name, 'r') as fp:
-    #         return json.load(fp)
     tenants = get_tenants()
     items = get_items()
     postal = read_postal_csv('postal.csv')
