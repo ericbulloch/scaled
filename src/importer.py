@@ -44,3 +44,7 @@ def main():
             cursor.executemany(sql, [map_order(order) for order in orders])
             connection.commit()
             print(f'{time() - start} seconds to import {full_path}')
+
+
+if __name__ == '__main__':
+    main()
