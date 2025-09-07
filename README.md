@@ -65,6 +65,13 @@ Since the same generated data is used by each backend stage, this script only ne
 
 This script will generate an `orders` directory filled with order information for many tenants. The different backend stages have an `importer.py` script that they use to convert this data into the format that their respective stage needs.
 
+#### Running the Data Generator
+
+```bash
+$ cp config.json.example config.json
+$ python generator.py
+```
+
 ### Front End
 
 This project uses a React.js front end (currently not implemented). The front end is aware of each stage's back end API. This means that a single front end is used to display data from each back end which makes it easy to visualize the data as well as compare the speed of each approach.
@@ -78,6 +85,10 @@ The front end has a landing page with a listing for the different stages. Clicki
   - Database call time.
   - Back end processing time.
   - Front end processing time.
+
+### Back End Stage
+
+
 
 ## Conclusion
 
