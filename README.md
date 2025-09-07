@@ -65,6 +65,20 @@ Since the same generated data is used by each backend stage, this script only ne
 
 This script will generate an `orders` directory filled with order information for many tenants. The different backend stages have an `importer.py` script that they use to convert this data into the format that their respective stage needs.
 
+### Front End
+
+This project uses a React.js front end (currently not implemented). The front end is aware of each stage's back end API. This means that a single front end is used to display data from each back end which makes it easy to visualize the data as well as compare the speed of each approach.
+
+The front end has a landing page with a listing for the different stages. Clicking on a stage will show a page with the following information:
+
+- Visualize the order data (this is a sample reporting site)
+- Description of what kind of processing was done.
+- Show metrics the following:
+  - API call time.
+  - Database call time.
+  - Back end processing time.
+  - Front end processing time.
+
 ## Conclusion
 
 I hope to learn more about scaling and what it takes to "move the needle" for clients with large-scale needs. I want to publish this repository so others can see what has been done and decide for themselves whether a "slow technology" is the issue preventing scaling or if the problem lies elsewhere.
