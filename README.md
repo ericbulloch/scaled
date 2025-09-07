@@ -53,6 +53,16 @@ Orders are generated and placed in an `orders` folder. Each folder under `orders
 
 I then import these orders into a database. I am currently building the first phase in SQLite and will switch to the aforementioned databases when ready.
 
+## How To Run
+
+The project has three major components that need to be ran. They are the data generator, front end and stages. Each component is explained below.
+
+### Data Generator
+
+Found at the root of the `src` directory. The `generator.py` script in combination with a `config.json` file will generate data for the backend APIs that are found in each of the stage folders. The `config.json` file will tell how many days worth of data needs to be generated along with how many orders and how big they are. This is done for each tenant.
+
+
+
 ## Conclusion
 
 I hope to learn more about scaling and what it takes to "move the needle" for clients with large-scale needs. I want to publish this repository so others can see what has been done and decide for themselves whether a "slow technology" is the issue preventing scaling or if the problem lies elsewhere.
