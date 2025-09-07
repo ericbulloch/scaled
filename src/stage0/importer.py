@@ -31,7 +31,7 @@ def main():
         )
     ''')
     connection.commit()
-    for root, dirs, files in os.walk('orders'):
+    for root, dirs, files in os.walk(os.path.join('..', 'orders')):
         if not files:
             continue
         for file in files:
