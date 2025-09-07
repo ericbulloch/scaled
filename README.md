@@ -61,7 +61,9 @@ The project has three major components that need to be ran. They are the data ge
 
 Found at the root of the `src` directory. The `generator.py` script in combination with a `config.json` file will generate data for the backend APIs that are found in each of the stage folders. The `config.json` file will tell how many days worth of data needs to be generated along with how many orders and how big they are. This is done for each tenant.
 
+Since the same generated data is used by each backend stage, this script only needs to be ran one time. It has no external dependencies and has been tested with Python 3.10+.
 
+This script will generate an `orders` directory filled with order information for many tenants. The different backend stages have an `importer.py` script that they use to convert this data into the format that their respective stage needs.
 
 ## Conclusion
 
